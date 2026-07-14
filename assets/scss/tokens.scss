@@ -1,0 +1,222 @@
+// Глобальные токены страницы: фон, акцент, общий цвет текста и базовые отступы.
+:root {
+    --main-top-padding: 35px;
+
+    @include respond(xl) {
+        --main-top-padding: 20px;
+    }
+
+    --body-background: #f0f4f8;
+
+    --accent-color: #07acff;
+    --accent-color-darker: #0098ea;
+    --accent-color-text: #fff;
+    --body-text-color: #728a96;
+
+    --tag-border-radius: 10px;
+
+    --section-separation: 40px;
+
+    &[data-scheme="dark"] {
+        --body-background: #0e1621;
+        --accent-color: #2ea6ff;
+        --accent-color-darker: #64b5ef;
+        --accent-color-text: #fff;
+        --body-text-color: #708499;
+    }
+}
+
+// Семейства шрифтов вынесены в CSS-переменные, чтобы статьи и UI наследовали один источник.
+:root {
+    --sys-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Droid Sans", "Helvetica Neue";
+    --base-font-family: "IBM Plex Sans", var(--sys-font-family), sans-serif;
+    --code-font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+// Карточки — главный визуальный контейнер темы: статьи, виджеты и поля ввода используют эти значения.
+:root {
+    --card-background: #fff;
+    --card-background-selected: #f0f4f8;
+
+    --card-text-color-main: #12172c;
+    --card-text-color-secondary: #425a68;
+    --card-text-color-tertiary: #728a96;
+    --card-separator-color: rgba(192, 209, 217, 0.65);
+
+    --card-border-radius: 20px;
+
+    --card-padding: 20px;
+
+    @include respond(md) {
+        --card-padding: 25px;
+    }
+
+    @include respond(xl) {
+        --card-padding: 30px;
+    }
+
+    --small-card-padding: 25px 20px;
+
+    @include respond(md) {
+        --small-card-padding: 25px;
+    }
+
+    &[data-scheme="dark"] {
+        --card-background: #17212b;
+        --card-background-selected: #232e3c;
+        --card-text-color-main: #f5f5f5;
+        --card-text-color-secondary: #b1c3d5;
+        --card-text-color-tertiary: #708499;
+        --card-separator-color: rgba(112, 132, 153, 0.28);
+    }
+}
+
+/**
+*   Article content font settings
+*/
+:root {
+    --article-font-family: var(--base-font-family);
+    --article-font-size: 1.8rem;
+
+    @include respond(md) {
+        --article-font-size: 1.9rem;
+    }
+
+    --article-line-height: 1.85;
+}
+
+/*
+*   Article content style
+*/
+:root {
+    --blockquote-border-size: 4px;
+    --blockquote-background-color: #f0f4f8;
+
+    --heading-border-size: 4px;
+
+    --alert-note-color: #07acff;
+    --alert-note-background: rgba(7, 172, 255, 0.09);
+    --alert-tip-color: #00b894;
+    --alert-tip-background: rgba(0, 184, 148, 0.09);
+    --alert-important-color: #7c5cff;
+    --alert-important-background: rgba(124, 92, 255, 0.09);
+    --alert-warning-color: #f5a524;
+    --alert-warning-background: rgba(245, 165, 36, 0.12);
+    --alert-caution-color: #ef4444;
+    --alert-caution-background: rgba(239, 68, 68, 0.1);
+
+    --link-background-color: 7, 172, 255;
+    --link-background-opacity: 0.14;
+    --link-background-opacity-hover: 0.24;
+
+    --code-background-color: rgba(7, 172, 255, 0.1);
+    --code-text-color: #12172c;
+
+    --table-border-color: #c0d1d9;
+    --tr-even-background-color: #f0f4f8;
+
+    --kbd-border-color: #c0d1d9;
+
+    &[data-scheme="dark"] {
+        --code-background-color: rgba(46, 166, 255, 0.14);
+        --code-text-color: #f5f5f5;
+
+        --table-border-color: rgba(112, 132, 153, 0.34);
+        --tr-even-background-color: #1d2a36;
+
+        --blockquote-background-color: #1d2a36;
+    }
+}
+
+/*
+*   Shadow style
+*   Thanks to https://www.figma.com/community/plugin/744987207861965946/Shadow-picker
+*/
+:root {
+    --shadow-l1-y: 4px;
+    --shadow-l1-blur: 8px;
+    --shadow-l2-y: 10px;
+    --shadow-l2-blur: 20px;
+
+    --shadow-l1: 0px var(--shadow-l1-y) var(--shadow-l1-blur) rgba(18, 23, 44, 0.05), 0px 0px 2px rgba(18, 23, 44, 0.06), 0px 0px 1px rgba(18, 23, 44, 0.04);
+    --shadow-l2: 0px var(--shadow-l2-y) var(--shadow-l2-blur) rgba(18, 23, 44, 0.06), 0px 2px 6px rgba(18, 23, 44, 0.05), 0px 0px 1px rgba(18, 23, 44, 0.04);
+}
+
+[data-scheme="light"] {
+    --pre-text-color: #12172c;
+    --pre-background-color: #f8fbfd;
+    @import "partials/highlight/syntax-light.scss";
+}
+
+[data-scheme="dark"] {
+    --pre-text-color: #f5f5f5;
+    --pre-background-color: #101a25;
+    @import "partials/highlight/syntax-dark.scss";
+}
+
+:root {
+    --menu-icon-separation: 40px;
+    --container-padding: 15px;
+
+    @include respond(md) {
+        --container-padding: 20px;
+    }
+
+    --widget-separation: var(--section-separation);
+
+    /* Spacing tokens */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 15px;
+    --spacing-lg: 20px;
+    --spacing-xl: 25px;
+    --spacing-2xl: 30px;
+    --spacing-3xl: 40px;
+
+    /* Article image height variables */
+    --article-image-height: 150px;
+
+    @include respond(md) {
+        --article-image-height: 200px;
+    }
+
+    @include respond(xl) {
+        --article-image-height: 250px;
+    }
+
+    /* Mermaid component variables */
+    --mermaid-toolbar-btn-bg: rgba(255, 255, 255, 0.95);
+    --mermaid-toolbar-btn-text: #12172c;
+    --mermaid-modal-bg: rgba(7, 11, 26, 0.96);
+    --mermaid-modal-content-bg: #fff;
+    --mermaid-modal-btn-bg: #fff;
+    --mermaid-modal-btn-hover: #f0f4f8;
+
+    &[data-scheme="dark"] {
+        --mermaid-toolbar-btn-bg: rgba(23, 33, 43, 0.94);
+        --mermaid-toolbar-btn-text: #f5f5f5;
+        --mermaid-modal-content-bg: #17212b;
+        --mermaid-modal-btn-bg: #232e3c;
+        --mermaid-modal-btn-hover: #2d3b4d;
+    }
+
+    /* Article compact image size */
+    --article-compact-image-size: 50px;
+
+    @include respond(md) {
+        --article-compact-image-size: 60px;
+    }
+
+    /* Widget icon size */
+    --widget-icon-size: 32px;
+
+    /* Article list tile variables */
+    --article-tile-width: 250px;
+    --article-tile-height: 150px;
+    --article-tile-overlay-bg: rgba(0, 0, 0, 0.25);
+    --article-tile-text-color: #fff;
+
+    &[data-scheme="dark"] {
+        --article-tile-overlay-bg: rgba(14, 22, 33, 0.62);
+    }
+}

@@ -1,0 +1,24 @@
+{{ define "main" }}
+    <div class="not-found-card">
+        <h1 class="article-title">{{ T "notFound.title" }}</h1>
+        <h2 class="article-subtitle">{{ T "notFound.subtitle" }}</h2>
+    </div>
+
+    {{- $sections := .Site.Params.mainSections | default (slice "posts") -}}
+    {{- $pages := where .Site.RegularPages "Type" "in" $sections -}}
+    {{- $recommended := first 5 (partial "helper/pages-sort" (dict "Pages" $pages "Context" .)) -}}
+
+    {{- with $recommended -}}
+        <section class="not-found-recommendations">
+            <h2 class="not-found-recommendations__title">{{ T "article.relatedContent" }}</h2>
+
+            <div class="article-list">
+                {{- range . -}}
+                    {{ partial "article-list/default" . }}
+                {{- end -}}
+            </div>
+        </section>
+    {{- end -}}
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}

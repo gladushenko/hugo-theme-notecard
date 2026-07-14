@@ -1,0 +1,58 @@
+.widget {
+    display: flex;
+    flex-direction: column;
+
+    .widget-icon {
+        svg {
+            width: var(--widget-icon-size);
+            height: var(--widget-icon-size);
+            stroke-width: 1.6;
+            color: var(--body-text-color);
+        }
+    }
+}
+
+/* Tag cloud widget */
+.tagCloud {
+    .tagCloud-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+
+        a {
+            @include card-style;
+            border-radius: var(--tag-border-radius);
+            padding: 6px 10px;
+            color: var(--card-text-color-main);
+            font-size: 1.4rem;
+            transition: box-shadow 0.3s ease;
+
+            &:hover {
+                box-shadow: var(--shadow-l2);
+            }
+        }
+    }
+}
+
+.taxonomy-categories {
+    .tagCloud-tags {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+
+        a {
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
+            color: var(--card-text-color-main);
+            font-size: 1.6rem;
+            padding: 0;
+            text-align: start;
+
+            &:hover {
+                box-shadow: none;
+                color: var(--accent-color);
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+[[social]]
+    identifier = "github"
+    name       = "GitHub"
+    url        = "https://github.com/gladushenko/hugo-theme-notecard"
+
+    [social.params]
+        icon = "github-mark"

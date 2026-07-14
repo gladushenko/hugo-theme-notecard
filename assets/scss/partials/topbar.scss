@@ -1,0 +1,185 @@
+:root {
+    --site-header-sticky-height: calc(70px + var(--spacing-md) * 2);
+}
+
+// Липкая верхняя зона: держит меню и переключатель темы над контентом.
+.nc-topbar-shell {
+    background: var(--body-background);
+    padding: var(--spacing-md) var(--container-padding);
+    position: sticky;
+    top: 0;
+    transition: background-color 0.3s ease;
+    z-index: 20;
+}
+
+.nc-topbar-card {
+    @include card-style;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+    min-height: 70px;
+    overflow: hidden;
+    padding: 0;
+}
+
+.nc-topbar-menu {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    min-width: 0;
+    padding: var(--spacing-sm);
+}
+
+.nc-topbar-link {
+    border: 0;
+    border-radius: var(--tag-border-radius);
+    background: transparent;
+    color: var(--card-text-color-main);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    font-family: inherit;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    min-height: 44px;
+    padding: 0 var(--spacing-md);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus {
+        background-color: var(--card-background-selected);
+        color: var(--card-text-color-main);
+        outline: none;
+    }
+
+    &.current {
+        color: var(--accent-color);
+        font-weight: 700;
+    }
+}
+
+// Переключатель темы работает как тумблер: активная половина подсвечивается.
+.nc-theme-switch {
+    align-self: center;
+    background: var(--card-background-selected);
+    border: 1px solid var(--card-separator-color);
+    border-radius: 999px;
+    color: var(--body-text-color);
+    cursor: pointer;
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 0;
+    height: 34px;
+    margin-inline-end: var(--spacing-lg);
+    padding: 2px;
+    position: relative;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 64px;
+
+    &::before {
+        background: var(--accent-color);
+        border-radius: inherit;
+        content: "";
+        height: 28px;
+        left: 2px;
+        position: absolute;
+        top: 2px;
+        transition: transform 0.22s ease;
+        width: 28px;
+        z-index: 0;
+    }
+
+    svg {
+        display: block;
+        width: 16px;
+        height: 16px;
+        stroke: currentColor;
+        stroke-width: 2;
+    }
+
+    &:hover,
+    &:focus-visible {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px var(--card-background-selected);
+        outline: none;
+    }
+}
+
+.nc-theme-switch__icon {
+    color: var(--body-text-color);
+    display: grid;
+    height: 28px;
+    place-items: center;
+    position: relative;
+    transition: color 0.18s ease;
+    width: 28px;
+    z-index: 1;
+}
+
+.nc-theme-switch__icon--sun {
+    color: var(--card-background);
+}
+
+.nc-theme-switch__icon--moon {
+    color: var(--body-text-color);
+
+    svg {
+        height: 17px;
+        transform: translateX(2px);
+        width: 17px;
+    }
+}
+
+.nc-topbar-card {
+    #dark-mode-toggle.nc-theme-switch {
+        margin-top: 0;
+    }
+}
+
+[data-scheme="dark"] {
+    .nc-theme-switch {
+        &::before {
+            transform: translateX(30px);
+        }
+    }
+
+    .nc-theme-switch__icon--sun {
+        color: var(--body-text-color);
+    }
+
+    .nc-theme-switch__icon--moon {
+        color: var(--card-background);
+    }
+}
+
+.main-container {
+    padding-top: 20px;
+}
+
+@media (max-width: 767px) {
+    :root {
+        --site-header-sticky-height: calc(112px + var(--spacing-md) * 2);
+    }
+
+    .nc-topbar-card {
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-height: 112px;
+    }
+
+    .nc-topbar-menu {
+        border-bottom: 1px solid var(--card-separator-color);
+        overflow-x: auto;
+        padding-bottom: var(--spacing-sm);
+    }
+
+    .nc-theme-switch {
+        align-self: center;
+        margin-inline-start: auto;
+        min-height: 34px;
+    }
+}

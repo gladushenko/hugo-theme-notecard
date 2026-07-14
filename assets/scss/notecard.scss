@@ -1,0 +1,32 @@
+/*!
+*   Notecard
+*/
+
+// Базовые токены и инструменты: сначала переменные, потом сетка и миксины.
+@import "media.scss";
+@import "tokens.scss";
+@import "tools.scss";
+@import "layout-grid.scss";
+
+// Сброс браузерных стилей держим отдельно от авторского UI.
+@import "external/reset.scss";
+
+// Основные зоны интерфейса Notecard.
+@import "partials/nav-panel.scss";
+@import "partials/topbar.scss";
+@import "partials/entry.scss";
+@import "partials/side-widgets.scss";
+@import "partials/site-end.scss";
+@import "partials/pager.scss";
+@import "partials/side-column.scss";
+@import "partials/foundation.scss";
+
+// Страничные сценарии подключаются после базовых компонентов.
+@import "partials/layout/entry-page.scss";
+@import "partials/layout/listing-page.scss";
+@import "partials/layout/not-found-page.scss";
+@import "partials/layout/search-page.scss";
+@import "partials/consent-banner.scss";
+
+@import "shared.scss";
+@import "overrides.scss";

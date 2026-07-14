@@ -1,0 +1,34 @@
+// Футер прижат к низу страницы через flex/grid-контекст основного контейнера.
+footer.nc-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: var(--spacing-lg);
+    margin-top: auto;
+    padding: var(--spacing-lg) 0 var(--section-separation) 0;
+    font-size: 1.6rem;
+    line-height: 1.75;
+
+    .nc-footer-copyright {
+        color: var(--accent-color);
+        font-weight: bold;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .nc-footer-credit {
+        color: var(--body-text-color);
+        font-weight: normal;
+        font-size: 1.4rem;
+
+        a {
+            color: var(--body-text-color);
+        }
+    }
+
+}
+
+@media (max-width: 767px) {
+    footer.nc-footer {
+        grid-template-columns: 1fr;
+    }
+}

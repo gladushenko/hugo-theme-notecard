@@ -1,0 +1,23 @@
+<header class="nc-topbar-card">
+    <nav class="nc-topbar-menu" aria-label="Main menu">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+            {{ $active := or (eq $currentPage.RelPermalink .URL) (or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .)) }}
+            <a href="{{ .URL }}" class="nc-topbar-link{{ if $active }} current{{ end }}" {{ if .Params.newTab }}target="_blank"{{ end }}>
+                {{- .Name -}}
+            </a>
+        {{ end }}
+
+    </nav>
+
+    {{ if .Site.Params.colorScheme.toggle }}
+        <button class="nc-theme-switch" id="dark-mode-toggle" type="button" aria-label="Toggle Theme" title="{{ T `darkMode` }}">
+            <span class="nc-theme-switch__icon nc-theme-switch__icon--sun" aria-hidden="true">
+                {{ partial "helper/icon" "sun" }}
+            </span>
+            <span class="nc-theme-switch__icon nc-theme-switch__icon--moon" aria-hidden="true">
+                {{ partial "helper/icon" "moon" }}
+            </span>
+        </button>
+    {{ end }}
+</header>

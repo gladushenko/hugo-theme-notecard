@@ -1,0 +1,196 @@
+.sidebar {
+    --sidebar-sticky-top: calc(var(--site-header-sticky-height, 0px) + 20px);
+
+    &.sticky {
+        @include respond(md) {
+            position: sticky;
+        }
+    }
+}
+
+.left-sidebar {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-self: stretch;
+
+    @include respond(md) {
+        gap: var(--sidebar-element-separation);
+    }
+
+    margin-bottom: calc(-1 * var(--sidebar-element-separation));
+
+    @include respond(md) {
+        margin-bottom: 0;
+    }
+
+    &> :not(:last-child) {
+        margin-bottom: var(--sidebar-element-separation);
+
+        @include respond(md) {
+            margin-bottom: 0;
+        }
+    }
+
+    max-width: none;
+    width: 100%;
+    position: relative;
+
+    --sidebar-avatar-size: 100px;
+    --sidebar-element-separation: var(--spacing-lg);
+
+    @include respond(md) {
+        width: auto;
+        padding-top: var(--main-top-padding);
+        padding-bottom: var(--main-top-padding);
+        max-height: calc(100vh - var(--sidebar-sticky-top));
+    }
+
+    @include respond(2xl) {
+        --sidebar-avatar-size: 120px;
+        --sidebar-element-separation: var(--spacing-xl);
+    }
+
+    &.sticky {
+        top: 0;
+
+        @include respond(md) {
+            top: var(--sidebar-sticky-top);
+        }
+    }
+
+    &.compact {
+        --sidebar-avatar-size: 80px;
+
+        header {
+            @include respond(lg) {
+                flex-direction: row;
+            }
+
+            .site-meta {
+                gap: var(--spacing-xs);
+            }
+
+            .site-name {
+                font-size: 1.6rem;
+
+                @include respond(2xl) {
+                    font-size: 1.95rem;
+                }
+            }
+
+            .site-description {
+                font-size: 1.6rem;
+            }
+        }
+    }
+}
+
+.left-sidebar {
+    .sidebar-widgets {
+        display: flex;
+        flex-direction: column;
+        gap: var(--widget-separation);
+        width: 100%;
+    }
+}
+
+.right-sidebar {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    gap: var(--widget-separation);
+
+    &.sticky {
+        top: var(--sidebar-sticky-top);
+    }
+
+    @include respond(lg) {
+        padding-top: var(--main-top-padding);
+        padding-bottom: var(--main-top-padding);
+    }
+}
+
+.sidebar header {
+    z-index: 1;
+    transition: box-shadow 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sidebar-element-separation);
+
+    @include respond(md) {
+        padding: 0;
+    }
+
+    .site-avatar {
+        position: relative;
+        margin: 0;
+        width: var(--sidebar-avatar-size);
+        height: var(--sidebar-avatar-size);
+        flex-shrink: 0;
+
+        .site-logo {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            box-shadow: var(--shadow-l1);
+        }
+    }
+
+    .site-meta {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        justify-content: center;
+    }
+
+    .site-name {
+        color: var(--accent-color);
+        margin: 0;
+        font-size: 1.8rem;
+
+        @include respond(2xl) {
+            font-size: 2rem;
+        }
+    }
+
+    .site-description {
+        color: var(--body-text-color);
+        font-weight: normal;
+        margin: 0;
+        font-size: 1.6rem;
+
+        @include respond(2xl) {
+            font-size: 1.8rem;
+        }
+    }
+}
+
+#i18n-switch {
+    color: var(--body-text-color);
+    display: inline-flex;
+    align-content: center;
+    gap: var(--menu-icon-separation);
+
+    select {
+        border: 0;
+        background: none !important;
+        color: var(--body-text-color);
+        padding: 0 !important;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: inherit;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+
+        &::-ms-expand {
+            display: none;
+        }
+
+        option {
+            color: var(--card-text-color-main);
+            background-color: var(--card-background);
+        }
+    }
+}

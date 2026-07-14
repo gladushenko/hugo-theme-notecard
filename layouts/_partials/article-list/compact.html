@@ -1,0 +1,76 @@
+<article>
+    <a href="{{ .RelPermalink }}">
+        <div class="article-details">
+            {{- $description := .Params.description -}}
+            {{- $IsTerm := in .Kind "term" -}}
+            {{- if $IsTerm -}}
+                {{- $description = $description | default (T "list.page" (len .Pages)) -}}
+            {{- end -}}
+
+            {{- if and (not $IsTerm) (not .Date.IsZero) -}}
+                <footer class="article-meta">
+                    <div class="inline-meta">
+                        {{ partial "helper/icon" "calendar" }}
+                        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+                            {{- .Date | time.Format .Site.Params.dateFormat.published -}}
+                        </time>
+
+                        {{ if (.Params.readingTime | default .Site.Params.article.readingTime) }}
+                            {{ partial "helper/icon" "time" }}
+                            <time class="article-time--reading">
+                                {{ T "article.readingTime" .ReadingTime }}
+                            </time>
+                        {{ end }}
+                    </div>
+                </footer>
+            {{- end -}}
+
+            {{- if .Params.categories -}}
+                <footer class="article-meta article-category-meta">
+                    <div class="article-category inline-meta">
+                        {{ range (.GetTerms "categories") }}
+                            <span>{{ .LinkTitle }}</span>
+                        {{ end }}
+                    </div>
+                </footer>
+            {{- end -}}
+
+            <h2 class="article-title">
+                {{- .Title -}}
+            </h2>
+            
+            {{- if $description -}}
+                <section class="article-preview">{{- $description -}}</section>
+            {{- end -}}
+
+            {{- if .Params.tags -}}
+                <footer class="article-meta article-taxonomy-meta">
+                    <div class="article-tags inline-meta">
+                        {{ range (.GetTerms "tags") }}
+                            <span>{{ .LinkTitle }}</span>
+                        {{ end }}
+                    </div>
+                </footer>
+            {{- end -}}
+        </div>
+
+        {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) -}}
+        {{ if $image }}
+        <div class="article-image">
+            {{ partial "helper/thumbnail-image" (dict 
+                "Resource" $image.Resource
+                "Width" 60
+                "Height" 60
+                "Resize" .Site.Params.ImageProcessing.Thumbnail.Enabled
+                "Attributes" (dict
+                    "src" $image.Permalink
+                    "alt" .Title
+                    "loading" "lazy"
+                    "width" $image.Width
+                    "height" $image.Height
+                )
+            ) }}
+        </div>
+        {{ end }}
+    </a>
+</article>

@@ -1,0 +1,7 @@
+[en]
+    label  = "English"
+    title  = "Hugo Notecard Project"
+    weight = 1
+
+    [en.params.sidebar]
+        subtitle = "Card-style Hugo theme for technical notes."

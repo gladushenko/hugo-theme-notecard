@@ -1,0 +1,17 @@
+.not-found-card {
+    background-color: var(--card-background);
+    box-shadow: var(--shadow-l1);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+}
+
+.not-found-recommendations {
+    margin-top: var(--spacing-md);
+
+    &__title {
+        margin: 0 0 var(--spacing-sm);
+        color: var(--card-text-color-main);
+        font-size: 2rem;
+        font-weight: 700;
+    }
+}
